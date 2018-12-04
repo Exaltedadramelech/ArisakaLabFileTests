@@ -84,7 +84,6 @@ def randomletterarray1():
 			outputarray[i]="Y"
 		elif numbertoletter==26:
 			outputarray[i]="Z"
-		print outputarray[i]
 
 
 def randomletterarray2():
@@ -144,7 +143,6 @@ def randomletterarray2():
 			outputarray2[i]="Y"
 		elif numbertoletter==26:
 			outputarray2[i]="Z"
-		print outputarray2[i]
 
 def randomletterarray3():
 	global outputarray3
@@ -203,7 +201,6 @@ def randomletterarray3():
 			outputarray3[i]="Y"
 		elif numbertoletter==26:
 			outputarray3[i]="Z"
-		print outputarray3[i]
 
 def randomletterarray4():
 	global outputarray4
@@ -262,7 +259,6 @@ def randomletterarray4():
 			outputarray4[i]="Y"
 		elif numbertoletter==26:
 			outputarray4[i]="Z"
-		print outputarray4[i]
 
 def lettertext(text1, text2, text3, text4, text5, text6, text7, text8 ,h, posi):
 	one=visual.TextStim(win=window, text=text1, height=h, pos=(0.0, posi))
@@ -282,7 +278,7 @@ def lettertext(text1, text2, text3, text4, text5, text6, text7, text8 ,h, posi):
 	seven.draw()
 	eight.draw()
 
-Instructions1=visual.TextStim(win=window, text='Record the letters and position of the letters that you can recall, then get ready to see the actual configuration', pos=(0,0))
+Instructions1=visual.TextStim(win=window, text='Record the letters and position of the letters that you can recall, then press the f key to see the actual configuration, press the spacebar to exit the screen at any time', pos=(0,0))
 
 
 
@@ -292,17 +288,22 @@ def letterfunc():
 	randomletterarray2()
 	randomletterarray3()
 	randomletterarray4()
-	countspace=0
 	countinstruct=0
 	while clock.getTime()<=40.0:
-		#print clock.getTime()
 		if clock.getTime()<3.0:
 			vline.draw()
 			hline.draw()
 			window.flip()
 		elif event.getKeys("space"):
 			break
-		elif clock.getTime()>=5.0 and clock.getTime()<=15.0:
+		elif event.getKeys("f"):
+			countinstruct=1
+			lettertext(outputarray[0],outputarray[1],outputarray[2],outputarray[3],outputarray[4],outputarray[5],outputarray[6],outputarray[7],1.0,1.0)
+			lettertext(outputarray2[0],outputarray2[1],outputarray2[2],outputarray2[3],outputarray2[4],outputarray2[5],outputarray2[6],outputarray2[7],2.0,4.0)
+			lettertext(outputarray3[0],outputarray3[1],outputarray3[2],outputarray3[3],outputarray3[4],outputarray3[5],outputarray3[6],outputarray3[7],3.0,7.0)
+			lettertext(outputarray4[0],outputarray4[1],outputarray4[2],outputarray4[3],outputarray4[4],outputarray4[5],outputarray4[6],outputarray4[7],3.0,10.0)
+			window.flip()
+		elif clock.getTime()>=5.0 and clock.getTime()<=30.0 and countinstruct==0:
 			Instructions1.draw()
 			window.flip()
 		elif clock.getTime()>=3.0 and clock.getTime()<=5.0:
@@ -311,12 +312,7 @@ def letterfunc():
 			lettertext(outputarray3[0],outputarray3[1],outputarray3[2],outputarray3[3],outputarray3[4],outputarray3[5],outputarray3[6],outputarray3[7],3.0,7.0)
 			lettertext(outputarray4[0],outputarray4[1],outputarray4[2],outputarray4[3],outputarray4[4],outputarray4[5],outputarray4[6],outputarray4[7],4.0,10.0)
 			window.flip()
-		elif clock.getTime()>=15.0 and clock.getTime()<40.0:
-			lettertext(outputarray[0],outputarray[1],outputarray[2],outputarray[3],outputarray[4],outputarray[5],outputarray[6],outputarray[7],1.0,1.0)
-			lettertext(outputarray2[0],outputarray2[1],outputarray2[2],outputarray2[3],outputarray2[4],outputarray2[5],outputarray2[6],outputarray2[7],2.0,4.0)
-			lettertext(outputarray3[0],outputarray3[1],outputarray3[2],outputarray3[3],outputarray3[4],outputarray3[5],outputarray3[6],outputarray3[7],3.0,7.0)
-			lettertext(outputarray4[0],outputarray4[1],outputarray4[2],outputarray4[3],outputarray4[4],outputarray4[5],outputarray4[6],outputarray4[7],3.0,10.0)
-			window.flip()
+
 
 window.flip()
 clock.reset
